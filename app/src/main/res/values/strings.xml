@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">crud_ejemplo</string>
+    <string name="title">Registro estudiante</string>
+    <string name="hint_nombre">Nombre del estudiante</string>
+    <string name="hint_correo">Correo del estudiante</string>
+    <string name="btnTextLim">Limpiar</string>
+    <string name="btnTextInsertar">Insertar</string>
+    <string name="btnTextListar">Listar</string>
+    <string name="btnTextActualizar">Actualizar</string>
+    <string name="btnEliminar">Eliminar</string>
+    <string name="hint_curso">numero de curso</string>
+</resources>
