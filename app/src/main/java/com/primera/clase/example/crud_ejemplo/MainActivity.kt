@@ -90,7 +90,7 @@ class MainActivity : AppCompatActivity() {
                 "Debe ingresar nombre y curso.",
                 R.style.error_toast
             ).show()
-        }else if(curso.length < 4 || curso.length > 4 ){
+        }else if(curso.length < 1 || curso.length > 4 ){
             StyleableToast.makeText(
                 this,
                 "El curso debe tener max 4 digitos.",
@@ -98,6 +98,23 @@ class MainActivity : AppCompatActivity() {
             ).show()
         }
 
+        val estAct = EstModel(estModel?.id, nombre, correo, curso)
+        val status = SQLiteHelper.actStudent(estAct)
+        if (status >-1){
+            clearText()
+            getStudent()
+            StyleableToast.makeText(
+                this,
+                "Actualizado correctamente.",
+                R.style.success_toast
+            ).show()
+        }else{
+            StyleableToast.makeText(
+                this,
+                "Error al actualizar el estudiante.",
+                R.style.error_toast
+            ).show()
+        }
     }
 
     private fun clearText() {

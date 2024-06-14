@@ -85,4 +85,17 @@ class SQLHelper(context: MainActivity): SQLiteOpenHelper(context, DB_NAME,null,D
         }
         return listaEst
     }
+
+    fun actStudent(estAct: EstModel): Int {
+        val db = this.writableDatabase
+
+        val contentValues = ContentValues()
+        contentValues.put(NOMBRE,estAct.nombre)
+        contentValues.put(CORREO,estAct.correo)
+        contentValues.put(CURSO,estAct.curso)
+
+        val success = db.update(DB_TABLE,contentValues,"$ID_EST=${estAct.id}",null)
+        db.close()
+        return success
+    }
 }
