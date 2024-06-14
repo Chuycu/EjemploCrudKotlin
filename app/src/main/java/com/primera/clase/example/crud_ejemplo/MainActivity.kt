@@ -40,6 +40,14 @@ class MainActivity : AppCompatActivity() {
                 clearText()
             }
 
+            btnActualizar.setOnClickListener {
+                val nombreEst = etNombreEst.text.toString()
+                val correoEst = etCorreoEst.text.toString()
+                val cursoEst = etCursoEst.text.toString()
+                updateStudent(nombreEst, correoEst, cursoEst)
+            }
+
+
         }
 
         adapter?.setOnClickItem {
@@ -50,6 +58,44 @@ class MainActivity : AppCompatActivity() {
                 etCursoEst.setText(it.curso)
                 estModel = it
             }
+        }
+
+    }
+
+    private fun updateStudent(nombre: String, correo: String, curso: String) {
+        if (nombre.equals(estModel?.nombre)
+            && correo.equals(estModel?.correo)
+            && curso.equals(estModel?.curso)){
+            StyleableToast.makeText(
+                this,
+                "No se actualizo el estudiante , no hay cambios.",
+                R.style.error_toast
+            ).show()
+            clearText()
+            return
+        }
+
+        if(estModel == null){
+            StyleableToast.makeText(
+                this,
+                "Debe dar click a un estudiante de la lista.",
+                R.style.error_toast
+            ).show()
+            return
+        }
+
+        if(nombre.isEmpty() || curso.isEmpty()){
+            StyleableToast.makeText(
+                this,
+                "Debe ingresar nombre y curso.",
+                R.style.error_toast
+            ).show()
+        }else if(curso.length < 4 || curso.length > 4 ){
+            StyleableToast.makeText(
+                this,
+                "El curso debe tener max 4 digitos.",
+                R.style.error_toast
+            ).show()
         }
 
     }
